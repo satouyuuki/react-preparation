@@ -8,7 +8,7 @@ const CONTACTS_COLLECTION = "contacts";
 const app = express();
 app.use(bodyParser.json());
 
-const db;
+let db;
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
