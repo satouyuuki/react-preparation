@@ -7,7 +7,8 @@ const CONTACTS_COLLECTION = "contacts";
 
 const app = express();
 app.use(bodyParser.json());
-
+const distDir = __dirname + '/dist/';
+app.use(express.static(distDir));
 let db;
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
@@ -66,9 +67,9 @@ app.get("/api/contacts/:id", function (req, res) {
 
 });
 app.put("/api/contacts/:id", function (req, res) {  
-  const updateDoc = req.body;
+  let updateDoc = req.body;
   delete updateDoc._id;
-  db.collection(CONTACTS_COLLECTION).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+  db.collection(CONTACTS_COLLECTION).updateOne({ _id: new ObjectID(req.params.id) }, { $set: updateDoc }, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to update contact");
     } else {
