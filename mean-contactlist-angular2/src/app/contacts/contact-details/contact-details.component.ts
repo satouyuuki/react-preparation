@@ -24,17 +24,17 @@ export class ContactDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createContent(contact: Contact) {
+  createContact(contact: Contact) {
     this.contactService.createContact(contact).then((newContact: Contact) => {
       this.createHandler(newContact);
     })
   }
-  updateContent(contact: Contact) {
+  updateContact(contact: Contact) {
     this.contactService.updateContact(contact).then((updatedContact: Contact) => {
       this.updateHandler(updatedContact);
     })
   }
-  deleteContent(contactId: String) {
+  deleteContact(contactId: String) {
     this.contactService.deleteContact(contactId).then((deletedContactId: String) => {
       this.deleteHandler(deletedContactId);
     })
