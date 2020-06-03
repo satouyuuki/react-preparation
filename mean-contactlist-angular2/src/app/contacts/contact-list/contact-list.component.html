@@ -6,7 +6,7 @@
       class="list-group-item"
       *ngFor="let contact of contacts"
       (click)="selectContact(contact)"
-      [class.active]="contact === selectContact"
+      [class.active]="contact === selectedContact"
       >
         {{contact.name}}
       </li>
@@ -20,7 +20,7 @@
   </div>
   <div class="col-md-5 col-md-offset-2">
     <contact-details
-      [contact]="selectContact"    
+      [contact]="selectedContact"    
       [createHandler]="addContact"
       [updateHandler]="updateContact"
       [deleteHandler]="deleteContact"
