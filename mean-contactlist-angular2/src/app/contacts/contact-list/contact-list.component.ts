@@ -20,7 +20,7 @@ export class ContactListComponent implements OnInit {
     this.contactService
       .getContacts()
       .then((contacts: Contact[]) => {
-        this.contacts = contacts.map((contact) => {
+        this.contacts = (contacts || []).map((contact) => {
           if (!contact.phone) {
             contact.phone = {
               mobile: '',
